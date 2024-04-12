@@ -1,0 +1,27 @@
+@import 'vis-network/styles/vis-network.min.css';
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.container {
+  height: 80vh;
+  width: 80vw;
+  border: 1px solid black;
+  /* margin-left: auto;
+  margin-right: 0; Align to the right */
+} 
+
+.selected_gene{
+  background-color: #ffffff;
+  border: 1px solid #000;
+  padding: 5px;
+  margin: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
