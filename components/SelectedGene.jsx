@@ -28,7 +28,7 @@ function SelectGenesModal({ onDataChange }) {
                 alert("Invalid gene");
             }
         } catch (error) {
-            console.error("Error checking gene existence:", error);
+            alert("Error checking gene existence:", error);
         }
     };
 
@@ -36,7 +36,6 @@ function SelectGenesModal({ onDataChange }) {
         const fetchDataOnce = async () => {
             try {
                 const data = await fetchData();
-                console.log("Data fetched:", data);
 
                 // Extract gene_names and tf_names
                 const gene_names = Array.from(
@@ -66,7 +65,6 @@ function SelectGenesModal({ onDataChange }) {
     // Handle when user inputs a new gene/tf raise an alert if the gene is not in the database else add it to the selected genes
     useEffect(() => {
         if (selectedGene.length > 0) {
-            console.log("Selected genes:", selectedGene.trim());
             handleCheckGeneExistence(selectedGene.trim());
         }
     }, [selectedGene]);
@@ -85,8 +83,6 @@ function SelectGenesModal({ onDataChange }) {
     }, [isModalOpen]);
 
     const handleDataChange = (data) => {
-        console.log("Data:", data);
-        console.log("Selected genes:", selectedGenes);
         let filteredData = data.filter(
             (entry) =>
                 selectedGenes.includes(entry.gene_name.toLowerCase()) &&
@@ -99,13 +95,19 @@ function SelectGenesModal({ onDataChange }) {
         ]);
         const graph = convertNodesAndEdgesToObject(nodes, edges);
 
-        onDataChange(graph);
+        onDataChange(graph, []);
     };
 
     return (
-        <div>
-            <button onClick={() => setIsModalOpen(true)}>Select Genes</button>
+        <div className="load_genes_container">
+            <button
+                className="button"
+                onClick={() => setIsModalOpen(true)}
+            >
+                Load Genes From Database
+            </button>
 
+            {/* DynamicInputModal component */}
             <DynamicInputModal
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}

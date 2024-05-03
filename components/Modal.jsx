@@ -1,11 +1,15 @@
-"use client"
+import Modal from "react-modal";
+import propTypes from "prop-types";
+import { useState } from "react";
 
-import Modal from 'react-modal';
-import propTypes from 'prop-types';
-import { useState} from 'react';
-
-const DynamicInputModal = ({ isOpen, onClose, handleNewInput, setIsCancelled, selectedGenes }) => {
-    const [inputValue, setInputValue] = useState('');
+const DynamicInputModal = ({
+    isOpen,
+    onClose,
+    handleNewInput,
+    setIsCancelled,
+    selectedGenes,
+}) => {
+    const [inputValue, setInputValue] = useState("");
 
     const handleInputChange = (event) => {
         setInputValue(event.target.value);
@@ -13,16 +17,16 @@ const DynamicInputModal = ({ isOpen, onClose, handleNewInput, setIsCancelled, se
 
     const handleAddGene = () => {
         handleNewInput(inputValue);
-        setInputValue('');
+        setInputValue("");
     };
 
     const handleFinishSelection = () => {
-        setInputValue('');
+        setInputValue("");
         onClose();
     };
 
     const handleInputKeyDown = (event) => {
-        if (event.key === 'Enter') {
+        if (event.key === "Enter") {
             // Prevent form submission on Enter key press
             event.preventDefault();
             handleAddGene();
@@ -35,30 +39,43 @@ const DynamicInputModal = ({ isOpen, onClose, handleNewInput, setIsCancelled, se
     };
 
     return (
-        <Modal isOpen={isOpen}>
-            <div>
+        <Modal isOpen={isOpen} className="modal">
+            <div className="modal-container">
                 <h2>Type Genes</h2>
-                <input
-                    type="text"
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyDown={handleInputKeyDown}
-                />
-                <button onClick={handleAddGene}>Add Gene</button>
+                <div className="input-container">
+                    <input
+                        type="text"
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        onKeyDown={handleInputKeyDown}
+                        className="input-field"
+                    />
+                    <button onClick={handleAddGene} className="button">
+                        Add Gene
+                    </button>
+                </div>
 
-                <div>
+                <div className="selected-genes-container">
                     <p>Selected Genes:</p>
                     <ul>
                         {selectedGenes.map((gene, index) => (
-                            // <li key={index}>{gene}</li>
-                            <div className='selected_gene'>{gene}</div>
+                            <div key={index} className="selected-gene">
+                                {gene.toUpperCase()}
+                            </div>
                         ))}
                     </ul>
                 </div>
 
-                <div>
-                    <button onClick={handleFinishSelection}>Finish Selection</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                <div className="button-container">
+                    <button onClick={handleCancel} className="cancel-button">
+                        Cancel
+                    </button>
+                    <button
+                        onClick={handleFinishSelection}
+                        className="finish-button"
+                    >
+                        Finish Selection
+                    </button>
                 </div>
             </div>
         </Modal>

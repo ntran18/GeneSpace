@@ -1,27 +1,196 @@
-@import 'vis-network/styles/vis-network.min.css';
+/* styles.css */
+
+@import "vis-network/styles/vis-network.min.css";
 
 body {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow-y: auto;
-  height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    height: 100%;
 }
 
 .container {
-  height: 80vh;
-  width: 80vw;
-  border: 1px solid black;
-  /* margin-left: auto;
-  margin-right: 0; Align to the right */
-} 
+    height: 80vh;
+    width: 80vw;
+    border: 1px solid black;
+}
 
-.selected_gene{
-  background-color: #ffffff;
-  border: 1px solid #000;
-  padding: 5px;
-  margin: 5px;
-  display: inline-block;
-  cursor: pointer;
+/* Button styles */
+.button {
+    background-color: #007bff; /* Blue color */
+    color: #ffffff; /* White color */
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+/* UploadForm styles */
+.upload-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.custom-file-upload {
+    padding: 10px 20px;
+    background-color: #007bff; /* Blue color */
+    color: #ffffff; /* White color */
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3; /* Darker blue color on hover */
+}
+
+.file-input {
+    display: none; /* Hide the file input */
+}
+
+/* SelectGenesModal styles */
+.modal-container {
+    position: fixed; /* Position absolutely relative to the viewport */
+    top: 50%; /* Move the modal to the vertical center */
+    left: 50%; /* Move the modal to the horizontal center */
+    transform: translate(-50%, -50%); /* Center the modal perfectly */
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    z-index: 9999;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #aaaaaa;
+}
+
+.close-button:hover {
+    color: #000000;
+}
+
+.input-container {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.selected-genes-container {
+    margin-bottom: 20px;
+}
+
+.selected-gene {
+    display: inline-block;
+    color: #000000;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.cancel-button {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.finish-button {
+    background-color: #02b81e;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.finish-button,
+.cancel-button {
+    margin-left: 10px;
+}
+
+.load_genes_container,
+.select_one_gene_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.load_modal_button {
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.options-container,
+.cluster-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+}
+
+.cluster-container {
+    margin: 20px 0;
 }

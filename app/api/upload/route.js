@@ -17,14 +17,12 @@ async function POST(request) {
   }
 
   try {
-    console.log('file', file)
     // Read the file contents
     const bytes = await file.arrayBuffer()
     const fileBuffer = Buffer.from(bytes)
     
     // Parse the Excel file from binary data
     const workbook = xlsx.read(fileBuffer, { type: 'buffer' });
-    console.log('workbook', workbook)
     
     // Extract data from the first sheet
     const firstSheetName = workbook.SheetNames[0];

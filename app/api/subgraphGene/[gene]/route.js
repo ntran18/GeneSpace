@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
-// import { genes, tf, cacheData } from "../../networkdb/route";
 import { convertNodesAndEdgesToObject } from "@/utils/data";
 import { Pool } from "pg";
-// import { fetchPostgresData } from "@/app/postgres/utils";
-// import { data } from "vis-network";
 const pool = new Pool({
     user: "maikatran",
     host: "localhost",
@@ -40,7 +37,6 @@ export async function GET(request, context) {
                 ...data.map((entry) => entry.tf_name.trim().toUpperCase()),
             ])
         );
-        console.log(nodes);
         try {
             const client = await pool.connect();
             try {
@@ -85,14 +81,5 @@ export async function GET(request, context) {
             const graph = convertNodesAndEdgesToObject(nodes, edges);
             return NextResponse.json({ exists: true, graph: graph });
         }
-
-        // const edges = data.map((entry) => [
-        //     entry.tf_name.toUpperCase(),
-        //     entry.gene_name.toUpperCase(),
-        // ]);
-
-        // // Convert the nodes and edges to an object
-        // const graph = convertNodesAndEdgesToObject(nodes, edges);
-        // return NextResponse.json({ exists: true, graph: graph });
     }
 }

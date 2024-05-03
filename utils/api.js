@@ -16,7 +16,6 @@ export const getCluster = async (graph) => {
 export const fetchData = async () => {
     try {
         const response = await axios.get("/api/networkdb/");
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -27,21 +26,31 @@ export const fetchData = async () => {
 export const checkGeneExistence = async (geneName) => {
     try {
         const response = await axios.get(`/api/networkdb/${geneName}`);
-        console.log(response);
         return response.data.exists;
     } catch {
-        console.error("Error checking gene existence:", error);
         throw error;
     }
 };
 
 export const getSubgraphOfGene = async (geneName) => {
     try {
-        const response = await axios.get(`/api/subgraph/${geneName}`);
-        console.log(response);
+        const response = await axios.get(`/api/subgraphGene/${geneName}`);
         return response.data;
     } catch {
-        console.error("Error checking gene existence:", error);
+        throw error;
+    }
+};
+
+export const getSubgraphOfGroup = async (graph, group) => {
+    const body = { graph, group };
+    try {
+        const response = await fetch("/api/subgraphGroup/", {
+            method: "POST",
+            body: JSON.stringify(body),
+        });
+        return response.json();
+    } catch (error) {
+        console.error(error);
         throw error;
     }
 };

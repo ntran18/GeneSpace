@@ -35,16 +35,14 @@ export const convertNodesAndEdgesToObject = (nodesData, edgesData) => {
     const nodes = nodesData.map((label, index) => ({
         id: index,
         label,
+        title: label,
     }));
-
-    console.log("Nodes", nodes);
 
     const edges = edgesData.map(([fromLabel, toLabel]) => ({
         from: nodes.findIndex((node) => node.label === fromLabel),
         to: nodes.findIndex((node) => node.label === toLabel),
     }));
 
-    console.log("Edges", edges);
     return { nodes, edges };
 };
 

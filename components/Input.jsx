@@ -1,44 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function UploadForm({ onDataChange }) {
-  const [file, setFile] = useState(null);
+    const [file, setFile] = useState(null);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (!file) return;
+    const handleFileChange = async (e) => {
+        const selectedFile = e.target.files?.[0];
+        if (!selectedFile) return;
 
-    try {
-      const data = new FormData();
-      data.set('file', file);
+        try {
+            const data = new FormData();
+            data.set("file", selectedFile);
 
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: data
-      });
-      // handle the error
-      if (!res.ok) throw new Error(await res.text());
+            const res = await fetch("/api/upload", {
+                method: "POST",
+                body: data,
+            });
+            // handle the error
+            if (!res.ok) throw new Error(await res.text());
 
-      // Parse the JSON response
-      const responseData = await res.json();
-      onDataChange(responseData.graph)
-    } catch (e) {
-      // Handle errors here
-      console.error(e);
-    }
-  };
+            // Parse the JSON response
+            const responseData = await res.json();
+            onDataChange(responseData.graph, []);
+        } catch (e) {
+            // Handle errors here
+            alert("Error uploading file");
+        }
+    };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files?.[0]);
-  };
-
-  return (
-    <form onSubmit={onSubmit}>
-      <input
-        type="file"
-        name="file"
-        onChange={handleFileChange}
-      />
-      <input type="submit" value="Upload" />
-    </form>
-  );
+    return (
+        <div className="upload-form">
+            <label className="custom-file-upload">
+                <input
+                    type="file"
+                    name="file"
+                    onChange={handleFileChange}
+                    className="file-input"
+                />
+                Select File
+            </label>
+        </div>
+    );
 }
