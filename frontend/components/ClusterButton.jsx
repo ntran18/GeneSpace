@@ -57,7 +57,7 @@ const ClusterButton = ({ graph, onDataChange, groups }) => {
                 </button>
             </div>
             <Modal isOpen={showModal} className="modal">
-                <div>
+                <div className="modal-container">
                     <h2 className="modal-title">Choose a Group</h2>
                     {groups.map((group, index) => (
                         <button
