@@ -4,6 +4,7 @@
   - [Database](#database)
   - [NextJS website](#nextjs-website)
 - [Start the Project](#start-the-project)
+- [Demo](#demo)
 # Set Up Instructions
 You have to set up 3 things, backend, database, and frontend (NextJS)
 
@@ -90,3 +91,6 @@ You have to set up 3 things, backend, database, and frontend (NextJS)
 1. Start the front end by `npm run dev` inside `frontend` folder
 2. Start Django server by going to `backend` folder and run `python manage.py runserver`
 3. Make sure your database is running by `pg_ctl start -D location-of-cluster`
+
+# Demo
+- [Youtube](https://youtu.be/iFg6crey6XI)
